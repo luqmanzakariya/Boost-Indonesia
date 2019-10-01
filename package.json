@@ -1,0 +1,27 @@
+{
+  "name": "Boost-Indonesia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "0-toyRobotSimulator-test.js",
+  "scripts": {
+    "test": "mocha 0-toyRobotSimulator-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luqmanzakariya/Boost-Indonesia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luqmanzakariya/Boost-Indonesia/issues"
+  },
+  "homepage": "https://github.com/luqmanzakariya/Boost-Indonesia#readme",
+  "dependencies": {
+    "tape": "^4.11.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1"
+  }
+}

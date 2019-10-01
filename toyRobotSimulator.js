@@ -1,8 +1,20 @@
 let board = []
 let direction = 'north'
 let position = { x: 0, y: 0, f: '', face: ''}
+const { test } = require("tape");
+const assert = require('assert')
 
 // Generate Board
+function generateBoard (){
+  let board = []
+  for (let i=0; i<5; i++){
+    board[i] = []
+    for (let j=0; j<5; j++){
+      board[i][j] = []
+    }
+  }
+}
+
 for (let i=0; i<5; i++){
   board[i] = []
   for (let j=0; j<5; j++){
@@ -131,48 +143,70 @@ function left(){
 // Display
 function report (board){
   let view = board.map( x=>'| '+ x.join(' | ')+' |')
-  console.log(view.join('\n'))
-  console.log('current position: ', position.x, position.y, position.face)
+  // console.log(view.join('\n'))
+  console.log(`${position.x}, ${position.y}, ${position.face}`)
   
   // Clear board
-  for (let i=0; i<5; i++){
-    for (let j=0; j<5; j++){
-      board[i][j] = ' '
-    }
-  }
-  position.x = 0
-  position.y = 0
-  position.f = ''
-  position.face = ''
+  // for (let i=0; i<5; i++){
+  //   for (let j=0; j<5; j++){
+  //     board[i][j] = ' '
+  //   }
+  // }
+  // position.x = 0
+  // position.y = 0
+  // position.f = ''
+  // position.face = ''
 }
 
 
+// ====== Test using mocha ======
+describe('Toy Robot Simulator Test', () => {
+  it('board should be an object', () => {
+    place(0,0, 'north')
+    move()
+    report(board)
+    assert.equal(typeof board, 'object')
+  })
+})
+
+// ====== Test using tape ======
+// test("place(0,0, 'north')", t=> {
+//   place(0,0, 'north')
+//   move()
+//   report(board)
+//   console.log('===============')
+//   t.equal(report(board), "3, 0, north")
+//   t.end()
+// })
+
 // ========== unit tests/specs.! ==========
-place(0,0, 'north')
-move()
-report(board) // Expected current position: 3, 0, north
+// place(0,0, 'north')
+// move()
+// report(board) // Expected current position: 3, 0, north
 
-place(0,0, 'north')
-left()
-report(board) // Expected current position: 0, 0, west
+// place(0,0, 'north')
+// left()
+// report(board) // Expected current position: 0, 0, west
 
-place(1,2, 'east')
-move()
-move()
-left()
-move()
-report(board) // Expected current position: 2, 4, north
+// place(1,2, 'east')
+// move()
+// move()
+// left()
+// move()
+// report(board) // Expected current position: 2, 4, north
 
-place (5,5, 'north') //Expected Out of board range. X and Y should below 5
+// place (5,5, 'north') //Expected Out of board range. X and Y should below 5
 
-place(3,2, 'south')
-move()
-move()
-right()
-move()
-move()
-move() //Should handle, so the positionn still in 0,1
-left()
-move()
-move() //Should handle, so the positionn still in 0,0
-report(board)
+// place(3,2, 'south')
+// move()
+// move()
+// right()
+// move()
+// move()
+// move() //Should handle, so the positionn still in 0,1
+// left()
+// move()
+// move() //Should handle, so the positionn still in 0,0
+// report(board)
+
+module.exports = { place, move, right, left, report, generateBoard}
